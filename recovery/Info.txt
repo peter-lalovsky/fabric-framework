@@ -1,0 +1,1 @@
+Pipeline to the data from lh_bronze/Files/processed by using wildcards and Merge files in Copy Activity

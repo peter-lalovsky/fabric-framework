@@ -1,0 +1,7 @@
+kill_me/
+temp/
+gold/populate_dim_sales/
+gold/create_tables_in_lh_gold.ipynb
+one_time_exec/pl_one_time_exec_master/
+pl_master/manifest.json
+power_bi/refresh/nb_config_env.ipynb

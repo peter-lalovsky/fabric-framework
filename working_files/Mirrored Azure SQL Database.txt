@@ -1,0 +1,41 @@
+Mirrored Azure SQL Database
+***************************
+
+We can mirror only Azure SQL Server
+
+Source database --> System assigned managed identity --> Status --> On
+
+Columns with sys.columns.is_replicated = 0 are not replicated (mirrored)
+
+-- Run this on the source Azure SQL Server to get the columns that will not be replicated
+SELECT
+  S.[name]   AS [schema_name]
+  , T.[name] AS table_name
+  , C.[name] AS column_name
+FROM
+  sys.schemas      AS S
+  JOIN sys.tables  AS T ON S.[schema_id] = T.[schema_id]
+  JOIN sys.columns AS C ON T.[object_id] = C.[object_id]
+WHERE
+  C.is_replicated = 0
+  -- AND... -- add your conditions here
+ORDER BY 1, 2, 3;
+ 
+The destination is "Mirrored Database"
+	Has SQL endpoint, i.e. this is a database and we can run cross-database queries
+	
+Linitations
+	https://learn.microsoft.com/en-us/fabric/database/mirrored-database/azure-sql-database-limitations
+	
+Consume "Mirrored database"
+	https://learn.microsoft.com/en-us/fabric/database/mirrored-database/explore-onelake-shortcut	
+		Create a shortcut
+			You first need to create a shortcut from your mirrored tables into the Lakehouse, and then build notebooks with Spark queries in your Lakehouse.
+			In the Fabric portal, open Data Engineering.
+			If you don't have a Lakehouse created already, select Lakehouse and create a new Lakehouse by giving it a name.
+			Select Get Data -> New shortcut.
+			Select Microsoft OneLake.
+			You can see all your mirrored databases in the Fabric workspace.
+			Select the mirrored database you want to add to your Lakehouse, as a shortcut.
+			Select desired tables from the mirrored database.
+			Select Next, then Create.
