@@ -19,7 +19,7 @@ SELECT
     WHEN PK.COLUMN_NAME IS NOT NULL THEN 'Oui'
                                     ELSE 'Non'
   END                  AS [Is PK?]
-  , '' AS [Prefix SELECT]
+  , ''                 AS [Prefix SELECT]
   , C.COLUMN_NAME      AS [Column]
   , 'Yes'              AS [Is Included?]
   -- Cast SQL Server data types to Delta data types
