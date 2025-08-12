@@ -1,0 +1,72 @@
+{
+    "name": "pl_one_time_exec_master",
+    "objectId": "abc",
+    "properties": {
+        "activities": [
+            {
+                "name": "nb_create_lakehouse",
+                "type": "TridentNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "typeProperties": {
+                    "notebookId": "abc",
+                    "workspaceId": "abc1"
+                }
+            },
+            {
+                "name": "nb_insert_into_lakehouse",
+                "type": "TridentNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "nb_create_lakehouse",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "typeProperties": {
+                    "notebookId": "abc",
+                    "workspaceId": "abc"
+                }
+            },
+            {
+                "name": "nb_create_gold_warehouse",
+                "type": "TridentNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "nb_insert_into_lakehouse",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "typeProperties": {
+                    "notebookId": "abc",
+                    "workspaceId": "abc"
+                }
+            }
+        ],
+        "lastModifiedByObjectId": "abc",
+        "lastPublishTime": "2024-06-04T13:23:58Z"
+    }
+}
