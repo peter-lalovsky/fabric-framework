@@ -52,6 +52,7 @@ md | Meta data (lh_cfg.md_column)
     - ABFS paths
     - Tables (extract object, extract parameter, power bi refresh, metedata, log, schedule, etc.)
   - configuration.xlsx --> All the configuration for the framework. Paste in "lh_cfg/Files"
+  - extract_schema_table_column_from_src_server.sql - Extract the data, needed in configuration.xlsx, related to on-prem SQL Server
   - nb_insert_into_lakehouse.ipynb --> Copy/paste from "configuration.xlsx" to the framework system tables
   - nb_create_gold_warehouse.ipynb --> Create warehouse *gold*
   
