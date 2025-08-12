@@ -49,15 +49,16 @@ md | Meta data (lh_cfg.md_column)
 - /gold
   - nb_gold_master.ipynb --> The master notebook for *gold*. Calls all the other notebooks. Called from "pl_master"
 
-- /one_time_exec --> Run the following in order to create the initial objects
-  - nb_create_lakehouse.ipynb --> create:
-    - Lakehouses (cfg, log, bronze, silver, shortcut_1, other)
-    - ABFS paths
-    - Tables (extract object, extract parameter, power bi refresh, metedata, log, schedule, etc.)
-  - configuration.xlsx --> All the configuration for the framework. Paste in "lh_cfg/Files"
+- /one_time_exec - Initialization code
   - extract_schema_table_column_from_src_server.sql - Extract the data, needed in configuration.xlsx, related to on-prem SQL Server
-  - nb_insert_into_lakehouse.ipynb --> Copy/paste from "configuration.xlsx" to the framework system tables
-  - nb_create_gold_warehouse.ipynb --> Create warehouse *gold*
+  - configuration.xlsx --> All the configuration for the framework. Paste this file in OneLake "lh_cfg/Files"
+  - pl_one_time_exec_master.json --> Create and populate the initial objects
+    - nb_create_lakehouse.ipynb --> Create:
+      - Lakehouses (cfg, log, bronze, silver, shortcut_1, other)
+      - ABFS paths
+      - Tables (extract object, extract parameter, power bi refresh, metadata, log, schedule, etc.)
+- nb_insert_into_lakehouse.ipynb --> Transfer the data from "configuration.xlsx" to the framework system tables
+- nb_create_gold_warehouse.ipynb --> Create warehouse *gold*
   
 - pl_master *(triggered pipeline)*
   - get_global_parameter --> read from "lh_cfg.dbo.global_parameter"
