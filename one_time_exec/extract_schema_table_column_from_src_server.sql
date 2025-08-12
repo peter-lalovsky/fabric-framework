@@ -16,8 +16,8 @@ SELECT
   , ''                 AS [FROM]
   , ''                 AS [WHERE]
   , CASE
-    WHEN PK.COLUMN_NAME IS NOT NULL THEN 'Oui'
-                                    ELSE 'Non'
+    WHEN PK.COLUMN_NAME IS NOT NULL THEN 'Yes'
+                                    ELSE 'No'
   END                  AS [Is PK?]
   , ''                 AS [Prefix SELECT]
   , C.COLUMN_NAME      AS [Column]
